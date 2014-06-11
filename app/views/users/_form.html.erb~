@@ -1,0 +1,13 @@
+<div class="container">
+<%= simple_form_for @user , html: {class: 'form-horizontal'}  do |f| %>
+  <%= f.error_notification %>
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :email %>
+    <%= f.input :address, input_html: { class: 'span8 text', rows: 5 } %>
+  </div>
+  <div class="form-actions">
+    <%= f.submit class: "btn btn-primary" %>
+  </div>
+<% end %>
+</div>

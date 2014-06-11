@@ -1,0 +1,23 @@
+<div class="container">
+<%= link_to "Add User", new_user_path, :class => "btn btn-primary" %>
+<h1>Listing users</h1>
+
+<table class="table table-striped">
+  <tr>
+    <th>Name</th>
+    <th>Email</th>
+    <th>Address</th>
+    <th></th>
+  </tr>
+
+<% @users.each do |user| %>
+  <tr>
+    <td><%= user.name %></td>
+    <td><%= user.email %></td>
+    <td><%= user.address %></td>
+    <td><%= link_to 'Show', user, class: "btn" %>
+    <%= link_to 'Edit', edit_user_path(user), class: "btn btn-primary btn-mini" %>
+    <%= link_to 'Destroy', user, confirm: 'Are you sure?', method: :delete, class: "btn btn-danger btn-mini" %>
+  </tr>
+<% end %>
+</table>
