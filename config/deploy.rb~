@@ -126,7 +126,7 @@ EOF
 end
 desc 'Runs rake db:create'
     task :create => [:set_rails_env] do
-      on primary fetch(:migration_role) do
+      on roles(:all) do
         within release_path do
           with rails_env: fetch(:rails_env) do
             execute :rake, "db:create RAILS_ENV=#{fetch(:rails_env)}"
@@ -134,6 +134,18 @@ desc 'Runs rake db:create'
         end
       end
     end
+
+desc 'Runs rake db:migrate'
+    task :create => [:set_rails_env] do
+      on roles(:all) do
+        within release_path do
+          with rails_env: fetch(:rails_env) do
+            execute :rake, "db:migrate RAILS_ENV=#{fetch(:rails_env)}"
+          end
+        end
+      end
+    end
+
 before "deploy:assets:precompile", :generate_yml
 before "deploy:assets:precompile", :symlink 
 before "deploy:migrate", :create

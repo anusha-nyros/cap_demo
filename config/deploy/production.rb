@@ -6,8 +6,8 @@
 # Don't declare `role :all`, it's a meta role
 role :app, ["203.193.173.117", "10.90.90.110"]
 role :web, ["203.193.173.117", "10.90.90.110"]
-role :db,  %w{203.193.173.117}, :primary => true
-role :db, %w{10.90.90.110}
+role :db,  ["203.193.173.117","10.90.90.110"]
+#role :db, %w{10.90.90.110}
 
 # Extended Server Syntax
 # ======================
@@ -36,7 +36,7 @@ server '10.90.90.110', user: 'nyros', password: fetch(:web_password), roles: %w{
 # and/or per server
  server '10.90.90.110',
    user: 'nyros',
-   roles: %w{web, app},
+   roles: %w{web, app db},
    ssh_options: {
      user: 'nyros', # overrides user setting above
 #     keys: %w(/home/user_name/.ssh/id_rsa),
