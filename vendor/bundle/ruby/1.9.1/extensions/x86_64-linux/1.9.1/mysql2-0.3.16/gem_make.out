@@ -1,0 +1,32 @@
+/home/nyros/.rvm/rubies/ruby-1.9.3-p545/bin/ruby extconf.rb 
+checking for ruby/thread.h... no
+checking for rb_thread_blocking_region()... yes
+checking for rb_wait_for_single_fd()... yes
+checking for rb_hash_dup()... yes
+checking for rb_intern3()... yes
+-----
+Using mysql_config at /usr/bin/mysql_config
+-----
+checking for mysql.h... yes
+checking for errmsg.h... yes
+checking for mysqld_error.h... yes
+-----
+Setting libpath to /usr/lib/x86_64-linux-gnu
+-----
+creating Makefile
+
+make  clean
+
+make
+compiling client.c
+client.c: In function ‘rb_connect’:
+client.c:331:3: warning: ISO C90 forbids mixed declarations and code [-Wdeclaration-after-statement]
+client.c:357:26: warning: comparison between signed and unsigned integer expressions [-Wsign-compare]
+compiling result.c
+compiling infile.c
+compiling mysql2_ext.c
+linking shared-object mysql2/mysql2.so
+
+make  install
+/usr/bin/install -c -m 0755 mysql2.so /home/nyros/Anu/ROR_Projects/June/Jun11/Capistrano/cap_demo/vendor/bundle/ruby/1.9.1/gems/mysql2-0.3.16/ext/mysql2/.gem.20140611-13286-i2dqc5/mysql2
+installing default mysql2 libraries

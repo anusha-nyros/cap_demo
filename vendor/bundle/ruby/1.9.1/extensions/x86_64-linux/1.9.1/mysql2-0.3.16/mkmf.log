@@ -1,0 +1,203 @@
+have_header: checking for ruby/thread.h... -------------------- no
+
+"gcc -o conftest -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1/x86_64-linux -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1/ruby/backward -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1 -I.     -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC conftest.c  -L. -L/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -Wl,-R/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -L.  -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -L/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -lruby  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main(int argc, char **argv)
+4: {
+5:   return 0;
+6: }
+/* end */
+
+"gcc -E -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1/x86_64-linux -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1/ruby/backward -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1 -I.     -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC  conftest.c -o conftest.i"
+conftest.c:3:25: fatal error: ruby/thread.h: No such file or directory
+compilation terminated.
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <ruby/thread.h>
+/* end */
+
+--------------------
+
+have_func: checking for rb_thread_blocking_region()... -------------------- yes
+
+"gcc -o conftest -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1/x86_64-linux -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1/ruby/backward -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1 -I.     -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC conftest.c  -L. -L/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -Wl,-R/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -L.  -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -L/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -lruby  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+conftest.c: In function ‘t’:
+conftest.c:4:28: warning: variable ‘p’ set but not used [-Wunused-but-set-variable]
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: int t() { void ((*volatile p)()); p = (void ((*)()))rb_thread_blocking_region; return 0; }
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+/* end */
+
+--------------------
+
+have_func: checking for rb_wait_for_single_fd()... -------------------- yes
+
+"gcc -o conftest -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1/x86_64-linux -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1/ruby/backward -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1 -I.     -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC conftest.c  -L. -L/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -Wl,-R/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -L.  -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -L/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -lruby  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+conftest.c: In function ‘t’:
+conftest.c:4:53: error: ‘rb_wait_for_single_fd’ undeclared (first use in this function)
+conftest.c:4:53: note: each undeclared identifier is reported only once for each function it appears in
+conftest.c:4:28: warning: variable ‘p’ set but not used [-Wunused-but-set-variable]
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: int t() { void ((*volatile p)()); p = (void ((*)()))rb_wait_for_single_fd; return 0; }
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+/* end */
+
+"gcc -o conftest -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1/x86_64-linux -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1/ruby/backward -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1 -I.     -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC conftest.c  -L. -L/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -Wl,-R/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -L.  -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -L/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -lruby  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+conftest.c: In function ‘t’:
+conftest.c:4:1: warning: implicit declaration of function ‘rb_wait_for_single_fd’ [-Wimplicit-function-declaration]
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: int t() { rb_wait_for_single_fd(); return 0; }
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+/* end */
+
+--------------------
+
+have_func: checking for rb_hash_dup()... -------------------- yes
+
+"gcc -o conftest -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1/x86_64-linux -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1/ruby/backward -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1 -I.     -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC conftest.c  -L. -L/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -Wl,-R/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -L.  -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -L/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -lruby  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+conftest.c: In function ‘t’:
+conftest.c:4:28: warning: variable ‘p’ set but not used [-Wunused-but-set-variable]
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: int t() { void ((*volatile p)()); p = (void ((*)()))rb_hash_dup; return 0; }
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+/* end */
+
+--------------------
+
+have_func: checking for rb_intern3()... -------------------- yes
+
+"gcc -o conftest -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1/x86_64-linux -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1/ruby/backward -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1 -I.     -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC conftest.c  -L. -L/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -Wl,-R/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -L.  -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -L/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -lruby  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+conftest.c: In function ‘t’:
+conftest.c:4:53: error: ‘rb_intern3’ undeclared (first use in this function)
+conftest.c:4:53: note: each undeclared identifier is reported only once for each function it appears in
+conftest.c:4:28: warning: variable ‘p’ set but not used [-Wunused-but-set-variable]
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: int t() { void ((*volatile p)()); p = (void ((*)()))rb_intern3; return 0; }
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+/* end */
+
+"gcc -o conftest -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1/x86_64-linux -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1/ruby/backward -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1 -I.     -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC conftest.c  -L. -L/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -Wl,-R/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -L.  -rdynamic -Wl,-export-dynamic     -Wl,-R -Wl,/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -L/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -lruby  -lpthread -lrt -ldl -lcrypt -lm   -lc"
+conftest.c: In function ‘t’:
+conftest.c:4:1: warning: implicit declaration of function ‘rb_intern3’ [-Wimplicit-function-declaration]
+checked program was:
+/* begin */
+ 1: #include "ruby.h"
+ 2: 
+ 3: /*top*/
+ 4: int t() { rb_intern3(); return 0; }
+ 5: int main(int argc, char **argv)
+ 6: {
+ 7:   if (argc > 1000000) {
+ 8:     printf("%p", &t);
+ 9:   }
+10: 
+11:   return 0;
+12: }
+/* end */
+
+--------------------
+
+have_header: checking for mysql.h... -------------------- yes
+
+"gcc -E -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1/x86_64-linux -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1/ruby/backward -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1 -I. -I/usr/include/mysql     -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <mysql.h>
+/* end */
+
+--------------------
+
+have_header: checking for errmsg.h... -------------------- yes
+
+"gcc -E -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1/x86_64-linux -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1/ruby/backward -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1 -I. -I/usr/include/mysql     -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <errmsg.h>
+/* end */
+
+--------------------
+
+have_header: checking for mysqld_error.h... -------------------- yes
+
+"gcc -E -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1/x86_64-linux -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1/ruby/backward -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1 -I. -I/usr/include/mysql     -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC  conftest.c -o conftest.i"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: #include <mysqld_error.h>
+/* end */
+
+--------------------
+
+"gcc -o conftest -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1/x86_64-linux -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1/ruby/backward -I/home/nyros/.rvm/rubies/ruby-1.9.3-p545/include/ruby-1.9.1 -I. -I/usr/include/mysql     -O3 -ggdb -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration  -fPIC conftest.c  -L. -L/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -Wl,-R/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -L.  -rdynamic -Wl,-export-dynamic    -L/usr/lib/x86_64-linux-gnu -lmysqlclient -lpthread -lz -lm -lrt -ldl  -Wl,-R -Wl,/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -L/home/nyros/.rvm/rubies/ruby-1.9.3-p545/lib -lruby  -Wall -funroll-loops -lpthread -lrt -ldl -lcrypt -lm   -lc"
+checked program was:
+/* begin */
+1: #include "ruby.h"
+2: 
+3: int main() {return 0;}
+/* end */
+

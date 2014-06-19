@@ -1,0 +1,12 @@
+/home/nyros/.rvm/rubies/ruby-1.9.3-p545/bin/ruby extconf.rb 
+creating Makefile
+
+make  clean
+
+make
+compiling parser.c
+linking shared-object json/ext/parser.so
+
+make  install
+/usr/bin/install -c -m 0755 parser.so /home/nyros/Anu/ROR_Projects/June/Jun11/Capistrano/cap_demo/vendor/bundle/ruby/1.9.1/gems/json-1.8.1/ext/json/ext/parser/.gem.20140611-13286-gxjakq/json/ext
+installing default parser libraries

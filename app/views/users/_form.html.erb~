@@ -1,4 +1,5 @@
 <div class="container">
+<%= render :partial => "menu" %>
 <%= simple_form_for @user , html: {class: 'form-horizontal'}  do |f| %>
   <%= f.error_notification %>
   <div class="form-inputs">

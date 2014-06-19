@@ -7,9 +7,21 @@ gem 'rails', '3.2.3'
 
 gem 'mysql2'
 
+group :development do
+gem 'capistrano', '~> 3.1.0'
 
-gem 'capistrano'
+# rails specific capistrano funcitons
+gem 'capistrano-rails', '~> 1.1.0'
 
+# integrate bundler with capistrano
+gem 'capistrano-bundler'
+
+# if you are using RBENV
+gem 'capistrano-rbenv', "~> 2.0" 
+
+#gem 'rvm1-capistrano3', :require => false
+gem 'capistrano-rvm', git: 'git@github.com:capistrano/rvm.git'
+end
 gem 'simple_form'
 # Gems used only for assets and not required
 # in production environments by default.
