@@ -7,7 +7,7 @@ require 'capistrano/rvm'
 require 'capistrano/rails'
 require 'capistrano/bundler'
 #require 'capistrano/rails/migrations'
-#require 'capistrano/rails/assets'
+require 'capistrano/rails/assets'
 #require 'rvm1/capistrano3'
 
 
